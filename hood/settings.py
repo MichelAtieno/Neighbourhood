@@ -71,6 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hood.wsgi.application'
+LOGIN_REDIRECT_URL = '/home'
 
 
 # Database
