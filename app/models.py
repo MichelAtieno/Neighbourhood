@@ -29,6 +29,28 @@ class Business(models.Model):
         business = Business.objects.filter(user__username=username)
         return business
 
+class UserInfo(models.Model):
+    user_info = models.TextField()
+    date_posted = models.DateTimeField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('-date_posted',)
+
+    @classmethod
+    def status_by_user(cls,username):
+        status = UserInfo.objects.filter(user__username=username)
+        return status
+
+    @classmethod
+    def status_by_hood(cls, name):
+        status = UserInfo.objects.filter(hood__name= name)
+        return status
+
+    def __str__(self):
+        return self.user.username
+
 class UserProfile(models.Model):
     user_photo = models.ImageField(upload_to='pictures/', default="")
     user_name = models.CharField(max_length=50,  default="")
