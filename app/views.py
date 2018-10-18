@@ -1,15 +1,50 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .forms import RegistrationForm
-from .models import UserProfile
+from django.contrib import messages
+from .forms import HoodForm
+from .models import Neighbourhood, Business, UserProfile, Join, Posts, Comment 
 
 
 # Create your views here.
 def home(request):
-    
-    return render(request, 'home.html')
+
+    if request.user.is_authenticated:
+        if Join.objects.filter(user_id = request.user).exists():
+            hood = Neighbourhood.objects.get(pk = request.user.join.hood_id.id)
+            posts = Posts.objects.filter(hood = request.user.join.hood_id.id)
+            business = Business.objects.filter(hood = request.user.join.hood_id.id)
+            return render(request, 'neighbourhood.html', {'hood':hood, 'business':business, 'posts':posts})
+        else: 
+            hoods = Neighbourhood.objects.all()
+            return render(request, 'home.html', {'hoods':hoods})
+    else:
+        hoods = Neighbourhood.objects.all()
+        return render(request, 'home.html', {'hoods':hoods})
+        
+@login_required(login_url='/accounts/login/')
+def hood(request):
+	'''
+	This view function will create an instance of a neighbourhood
+	'''
+	if request.method == 'POST':
+		form = HoodForm(request.POST)
+		if form.is_valid():
+			hood = form.save(commit = False)
+			hood.user = request.user
+			hood.save()
+			messages.success(request, 'You Have succesfully created a hood.You may now join your neighbourhood')
+			return redirect('myHood')
+
+	else:
+		form = HoodForm()
+		return render(request,'my_hood.html',{"form":form})
+
+def GetHood(request):
+    hoods = Neighbourhood.objects.filter(user = request.user)
+    return render(request, 'hood/hood.html', {'hoods':hoods})
+
     
 
 @login_required(login_url='/accounts/login')

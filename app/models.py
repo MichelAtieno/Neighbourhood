@@ -6,11 +6,17 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Neighbourhood(models.Model):
+    HOODS = (
+    ('NairobiWest','NairobiWest',),
+    ('South C','South C'),
+    ('South B','South B'),
+    ('Westlands','Westlands'), 
+    )
     hood_name = models.CharField(max_length=50)
     hood_location = models.CharField(max_length=50)
-    # hood_address = AddressField(max_length= 50, default="")
-    hood_count = models.PositiveIntegerField()
-    # admin = ForeignKey(Admin)
+    hood_description  = models.TextField(max_length=100, choices=HOODS)
+    hood_count = models.IntegerField(null=True)
+    
 
     def save_hood(self):
         self.save()

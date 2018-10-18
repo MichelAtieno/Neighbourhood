@@ -1,8 +1,49 @@
-{% extends 'base.html' %}
+{%extends 'base.html'%}
+{%block content%}
 
 
-{% block content %}
 
-<h1 class="text-center">HEY</h1>
+ 
+<div class="container">
+	<h4>Welcome to Neighbourhood, create one <a href="{% url 'createHood' %}">here</a></h4>
+	
+	  <form  class="" action="">
+	    <div class="form-group">
+	      <input type="text" class="form-control" placeholder="Search Neighbourhood" name = "">
+	    
+	    </div>
 
-{% endblock %}
+	       <button type="submit" class="btn btn-default">Submit</button>
+	   
+	  </form>
+		
+	<div class="row" style="padding-top: 20px">
+
+		
+	
+		{%for hood in hoods%}
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				
+				<div class="panel-heading">
+					{{hood.name.capitalize}}
+				</div>
+				<div class="panel-body">
+					<p>{{hood.description.capitalize}}</p>
+					
+					
+					<a href="" class="btn btn-sm btn-success">Join</a>
+				</div>
+				
+				
+
+			</div>
+		</div>
+		{%endfor%}
+				
+	
+</div>
+</div>
+
+
+{%endblock%}
