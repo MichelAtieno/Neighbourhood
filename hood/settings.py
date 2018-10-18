@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'app',
     'bootstrap3',
     'django_db_signals',
-    'django_google_maps',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -73,7 +72,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hood.wsgi.application'
-LOGIN_REDIRECT_URL = '/home'
+LOGIN_REDIRECT_URL = '/'
 
 
 # Database

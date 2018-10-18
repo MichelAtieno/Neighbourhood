@@ -2,81 +2,100 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
-from django_google_maps.fields import AddressField, GeoLocationField
+from django.dispatch import receiver
 
 # Create your models here.
 class Neighbourhood(models.Model):
     hood_name = models.CharField(max_length=50)
-    hood_location = GeoLocationField(blank=True)
-    hood_address = AddressField(max_length= 50, default="")
-    # hood_count = models.PositiveIntegerField(null=True)
+    hood_location = models.CharField(max_length=50)
+    # hood_address = AddressField(max_length= 50, default="")
+    hood_count = models.PositiveIntegerField()
     # admin = ForeignKey(Admin)
+
+    def save_hood(self):
+        self.save()
+        
+    def delete_hood(self):
+        self.delete()
+    
+    @classmethod
+    def search_hood(cls, search_term):
+        hoods = cls.objects.filter(name__icontains = search_term)
+        return hoods
+
     def __str__(self):
         return self.hood_name
 
 class Business(models.Model):
     biz_name = models.CharField(max_length=50)
-    biz_email = models.CharField(max_length=100)
+    biz_email = models.EmailField()
     biz_description = models.CharField(max_length=1000)
     hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.business_name
+    def save_biz(self):
+        self.save()
+
+    def delete_biz(self):
+        self.delete()
+
 
     @classmethod
-    def get_business(cls, username):
-        business = Business.objects.filter(user__username=username)
+    def search_biz(cls, search_term):
+        business = cls.objects.filter(name__icontains=search_term)
         return business
 
-class UserInfo(models.Model):
-    user_info = models.TextField()
-    date_posted = models.DateTimeField()
+    def __str__(self):
+        return self.biz_name
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_bio = models.TextField(max_length=200)
+
+    def __str__(self):
+        return self.user
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+    instance.profile.save()
+
+class Join(models.Model):
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    hood_id = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.user_id
+
+class Posts(models.Model):
+    title = models.CharField(max_length=100)
+    body = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
 
-    class Meta:
-        ordering = ('-date_posted',)
+    def save_post(self):
+        self.save()
 
-    @classmethod
-    def status_by_user(cls,username):
-        status = UserInfo.objects.filter(user__username=username)
-        return status
-
-    @classmethod
-    def status_by_hood(cls, name):
-        status = UserInfo.objects.filter(hood__name= name)
-        return status
+    def delete_post(self):
+        self.delete()
 
     def __str__(self):
-        return self.user.username
+        return self.title
 
-class UserProfile(models.Model):
-    user_photo = models.ImageField(upload_to='pictures/', default="")
-    user_name = models.CharField(max_length=50,  default="")
-    email = models.CharField(max_length=100)
-    hood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
-    user_profile = models.OneToOneField(settings.AUTH_USER_MODEL)
+class Comment(models.Model):
+    comment = models.CharField(max_length = 1000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
 
-    @classmethod
-    def get_user_profile(cls, username):
-        profile = UserProfile.objects.get(user_profile__username = username)
-        return profile
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
 
     def __str__(self):
-        return self.user_profile.username
+        return self.comment
 
-def post_save_user_model_receiver(sender, instance, created, *args, **kwargs):
-    if created:
-        try:
-            UserProfile.objects.create(user_profile=instance)
-        except Exception as error:
-            print(error)
-
-post_save.connect(post_save_user_model_receiver, sender=settings.AUTH_USER_MODEL)
-
-
-
-    
 
 
