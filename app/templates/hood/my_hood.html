@@ -12,9 +12,9 @@
 			<div class="col-md-8">
                     {% include 'sidebars/allhoodsbar.html'%}
 				<h2><strong>{{hood.hood_name}}</strong></h2>
-				<h4>County: <strong>{{hood.hood_location.}}</strong> Hood Population : <strong>{{hood.hood_count}}</strong></h4>
+				<h4>Hood: <strong>{{hood.hood_location}}</strong> Hood Population : <strong>{{hood.hood_count}}</strong></h4>
 				<h4>{{hood.user_bio}}</h4>
-					
+				<a class="btn btn-danger" href="{% url 'exitHood' hood.id%}">Exit Neighbourhood</a>
 				
 					
 			</div>

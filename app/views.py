@@ -69,3 +69,9 @@ def joinHood(request,hoodId):
 	messages.success(request, 'Success! You have succesfully joined this Neighbourhood ')
 	return redirect('home')
 
+@login_required(login_url='/accounts/login/')
+def exitHood(request,hoodId):
+    if Join.objects.filter(user_id=request.user).exists():
+        Join.objects.get(user_id=request.user).delete()
+        messages.error(request, 'You have successfully exited this Neighbourhood')
+        return redirect('home')

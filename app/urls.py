@@ -9,6 +9,7 @@ urlpatterns=[
     url(r'^myHoods/$',views.GetHood,name = 'myHood'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^join/(\d+)',views.joinHood,name = 'joinHood'),
+    url(r'^exitHood/(\d+)',views.exitHood,name = 'exitHood'),
 ]
 
 if settings.DEBUG:
