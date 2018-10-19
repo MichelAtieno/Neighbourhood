@@ -21,6 +21,7 @@
 			<div class="col-md-1"></div>
 		
 	</div>
+	<h1 class="text-center">POSTS</h1>
 	{%if posts%}
 				    	
 			<div class="row">
@@ -52,6 +53,34 @@
 			{% else %}
 			<h4 class="text-center">No Post has been created for this hood yet. Be the first to create on <a href="{% url 'createPost' %}">here</a></h4>
 			{% endif %}
+
+			<h1 class="text-center">BUSINESS</h1>
+			<div class="row">
+				{% if business %}
+					 {% for biz in business %}
+
+						<div class="col-md-6">
+							<div class="panel panel-default">
+								
+								<div class="panel-heading">
+									{{biz.biz_name}}
+								</div>
+								<div class="panel-body">
+									<p>{{biz.biz_description}}</p>
+									
+									
+								</div>
+								
+								
+
+							</div>
+						</div>
+
+					{%endfor%}
+				{% else %}
+					<h4 class="text-center">No Business has been created for this hood yet. Be the first to create on <a href="{% url 'createBusiness' %}">here</a></h4>
+				{% endif %}
+			</div>
 	
 
 

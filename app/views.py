@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import HoodForm, HoodPostForm, CommentForm
+from .forms import HoodForm, HoodPostForm, CommentForm, BusinessForm
 from .models import Neighbourhood, Business, UserProfile, Join, Posts, Comment 
 
 
@@ -124,3 +124,29 @@ def singlePost(request, postId):
 	else:
 		messages.error(request, 'Join a neighbourhood to view post')
 		return redirect('home')
+
+@login_required(login_url='/accounts/login')
+def getBusiness(request):
+	business = Business.objects.filter(user =request.user)
+	return  render(request, 'hood/business.html', {'business':business})
+
+
+@login_required(login_url='/accounts/login')
+def business(request):
+	if Join.objects.filter(user_id = request.user).exists():
+		if request.method == 'POST':
+			form = BusinessForm(request.POST)
+			if form.is_valid():
+				business = form.save(commit= False)
+				business.user = request.user
+				business.hood = request.user.join.hood_id
+				business.save()
+				return redirect('business')
+		else:
+			form = BusinessForm()
+			return render(request,'hood/createbiz.html', {'form':form})
+	else:
+		messages.error(request, 'Join a neighbourhood to view business')
+		return redirect('home')
+
+

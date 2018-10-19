@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Neighbourhood, Posts, Comment
+from .models import Neighbourhood, Posts, Comment, Business
 
 class HoodForm(forms.ModelForm):
     class Meta: 
@@ -15,5 +15,10 @@ class HoodPostForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     class Meta:
-        model =Comment
+        model = Comment
         fields = ['comment']
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        fields = ['biz_name', 'biz_description', 'biz_email']
