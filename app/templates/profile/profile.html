@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{% block content%}
+	<div class="row container" style="padding-bottom:20px">
+		
+			<div class="col-md-3" style="padding-top: 24px">
+				{%if user.join%}
+					{% include 'sidebars/hoodbar.html' %}
+				{%endif%}
+
+			</div>
+			<div class="col-md-7">
+				{% include 'sidebars/allhoodsbar.html' %}
+				<h2><strong>{{profile.user}}</strong></h2>
+			
+				<h4><strong></strong> HOOD: <strong>{{user.join.hood_id.hood_location}}</strong> Neighbourhood: <strong>{{user.join.hood_id.hood_name}}</strong></h4>
+				<h4>{{profile.user_bio}}</h4>
+					
+			</div>
+			<div class="col-md-2"></div>
+		
+	</div>
+
+
+{%endblock%}
+
+

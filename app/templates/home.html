@@ -26,13 +26,15 @@
 			<div class="panel panel-default">
 				
 				<div class="panel-heading">
-					{{hood.name.capitalize}}
+					{{hood.hood_location}}
 				</div>
 				<div class="panel-body">
-					<p>{{hood.description.capitalize}}</p>
+                    <p>{{hood.hood_name}}</p>
+                    <p>{{hood.hood_description}}</p>
+                    
 					
 					
-					<a href="" class="btn btn-sm btn-success">Join</a>
+					<a href="{% url 'joinHood' hood.id %}" class="btn btn-sm btn-success">Join</a>
 				</div>
 				
 				

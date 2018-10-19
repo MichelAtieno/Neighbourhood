@@ -15,7 +15,7 @@ def home(request):
             hood = Neighbourhood.objects.get(pk = request.user.join.hood_id.id)
             posts = Posts.objects.filter(hood = request.user.join.hood_id.id)
             business = Business.objects.filter(hood = request.user.join.hood_id.id)
-            return render(request, 'neighbourhood.html', {'hood':hood, 'business':business, 'posts':posts})
+            return render(request, 'hood/my_hood.html', {'hood':hood, 'business':business, 'posts':posts})
         else: 
             hoods = Neighbourhood.objects.all()
             return render(request, 'home.html', {'hoods':hoods})
@@ -35,7 +35,7 @@ def hood(request):
 			hood.user = request.user
 			hood.save()
 			messages.success(request, 'You Have succesfully created a hood.You may now join your neighbourhood')
-			return redirect('myHood')
+			return redirect('hood/hood.html')
 
 	else:
 		form = HoodForm()
@@ -52,4 +52,20 @@ def profile(request):
     profile = UserProfile.objects.get(user=request.user)
 
     return render(request, 'profile/profile.html', { 'profile':profile })
+
+@login_required(login_url='/accounts/login/')
+def joinHood(request,hoodId):
+	'''
+	This view function will implement adding 
+	'''
+	neighbourhood = Neighbourhood.objects.get(pk = hoodId)
+	if Join.objects.filter(user_id = request.user).exists():
+		
+		Join.objects.filter(user_id = request.user).update(hood_id = neighbourhood)
+	else:
+		
+		Join(user_id=request.user,hood_id = neighbourhood).save()
+
+	messages.success(request, 'Success! You have succesfully joined this Neighbourhood ')
+	return redirect('home')
 

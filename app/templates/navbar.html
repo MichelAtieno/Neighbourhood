@@ -9,7 +9,7 @@
         </li>
         <li>
              <form class="form-inline my-2 my-lg-0" role="search" action="" style="margin-top:5px;">
-                <input class="form-control my-2 my-sm-0 search-input" name="project" type="search" placeholder="Search Project Name" aria-label="Search" style="font-size:20px;">
+                <input class="form-control my-2 my-sm-0 search-input" name="project" type="search" placeholder="Search Hood" aria-label="Search" style="font-size:20px;">
                 <span class="glyphicon glyphicon-search"></span>
             </form> 
 
@@ -28,7 +28,7 @@
             </a>
         </li>
         <li class="nav-item" style="margin-top:-10px;">
-            <a class="nav-link open-nav"href="" style="font-size:30px;"><i class="fa fa-user"> {{user}}</i></a>
+            <a class="nav-link open-nav"href="{% url 'profile' %}" style="font-size:30px;"><i class="fa fa-user"> {{user}}</i></a>
         </li>
         {% else %}
         <li>

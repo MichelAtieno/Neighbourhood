@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%load bootstrap3 %}
+{% block content%}
+	<div class="row container" style="padding-bottom:20px;">
+		
+			<div class="col-md-3" style="padding-top: 24px">
+				{%if user.join%}
+                {% include 'sidebars/hoodbar.html'%}
+				{%endif%}
+
+			</div>
+			<div class="col-md-8">
+                    {% include 'sidebars/allhoodsbar.html'%}
+				<h2><strong>{{hood.hood_name}}</strong></h2>
+				<h4>County: <strong>{{hood.hood_location.}}</strong> Hood Population : <strong>{{hood.hood_count}}</strong></h4>
+				<h4>{{hood.user_bio}}</h4>
+					
+				
+					
+			</div>
+			<div class="col-md-1"></div>
+		
+	</div>
+	<div class="row">
+		
+	</div>
+
+
+{%endblock%}
+
+

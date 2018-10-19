@@ -8,6 +8,7 @@ urlpatterns=[
     url(r'^createHood/$', views.hood, name='createHood'),
     url(r'^myHoods/$',views.GetHood,name = 'myHood'),
     url(r'^profile/$', views.profile, name='profile'),
+    url(r'^join/(\d+)',views.joinHood,name = 'joinHood'),
 ]
 
 if settings.DEBUG:
