@@ -6,9 +6,9 @@ from django.dispatch import receiver
 # Create your models here.
 class Neighbourhood(models.Model):
     HOODS = (
-    ('NairobiWest','NairobiWest',),
-    ('South C','South C'),
-    ('South B','South B'),
+    ('NairobiWest','Nairobi West',),
+    ('SouthC','South C'),
+    ('SouthB','South B'),
     ('Westlands','Westlands'), 
     )
     hood_name = models.CharField(max_length=50)
@@ -26,7 +26,7 @@ class Neighbourhood(models.Model):
     
     @classmethod
     def search_hood(cls, search_term):
-        hoods = cls.objects.filter(name__icontains = search_term)
+        hoods = cls.objects.filter(hood_location__icontains = search_term)
         return hoods
 
     def __str__(self):
@@ -61,11 +61,11 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user
 
-# @receiver(post_save, sender=User)
-# def update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         UserProfile.objects.create(user=instance)
-#     instance.profile.save()
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+    instance.profile.save()
 
 class Join(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)

@@ -73,5 +73,16 @@ def joinHood(request,hoodId):
 def exitHood(request,hoodId):
     if Join.objects.filter(user_id=request.user).exists():
         Join.objects.get(user_id=request.user).delete()
-        messages.error(request, 'You have successfully exited this Neighbourhood')
+        
         return redirect('home')
+
+def search(request):
+    if request.GET['search']:
+        search_term = request.GET.get('search')
+        hoods = Neighbourhood.search_hood(search_term)
+        message=f"{search_term}"
+        return render(request, 'search.html', {'message':message, 'hoods':hoods})
+    else:
+        message = 'You have not searched for any neighbourhood'
+        return render(request, 'search.html', {'message':message})
+        
