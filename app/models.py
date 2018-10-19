@@ -61,11 +61,11 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user
 
-@receiver(post_save, sender=User)
-def update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-    instance.profile.save()
+# @receiver(post_save, sender=User)
+# def update_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         UserProfile.objects.create(user=instance)
+#     instance.profile.save()
 
 class Join(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)

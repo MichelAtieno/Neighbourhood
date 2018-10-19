@@ -11,6 +11,8 @@ urlpatterns=[
     url(r'^join/(\d+)',views.joinHood, name = 'joinHood'),
     url(r'^exitHood/(\d+)',views.exitHood, name = 'exitHood'),
     url(r'^search/$',views.search, name= 'search'),
+    url(r'^hoodPost/$',views.hoodPost, name = 'hoodPost'),
+    url(r'^singlePost/(\d+)',views.singlePost, name = 'singlePost'),
 ]
 
 if settings.DEBUG:

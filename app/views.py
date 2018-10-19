@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import HoodForm
+from .forms import HoodForm, HoodPostForm, CommentForm
 from .models import Neighbourhood, Business, UserProfile, Join, Posts, Comment 
 
 
@@ -85,4 +85,42 @@ def search(request):
     else:
         message = 'You have not searched for any neighbourhood'
         return render(request, 'search.html', {'message':message})
-        
+
+@login_required(login_url='/accounts/login')
+def hoodPost(request):
+	if Join.objects.filter(user_id=request.user).exists():
+		if request.method == 'POST':
+			form = HoodPostForm(request.POST)
+			if form.is_valid():
+				post = form.save(commit = False)
+				post.user = request.user
+				post.hood = request.user.join.hood_id
+				post.save()
+				return redirect('home')
+		else:
+			form = HoodPostForm()
+			return render(request, 'hood/createpost.html', {'form':form })
+	else:
+		messages.error(request, 'Error! Cannot create Post')
+		return render(request, 'home')
+
+@login_required(login_url='/accounts/login')
+def singlePost(request, postId):
+	if Join.objects.filter(user_id = request.user).exists():
+		post = Posts.objects.get(id = postId)
+		comments = Comment.objects.filter(post = postId)
+		if request.method == 'POST':
+			form = CommentForm(request.POST)
+			if form.is_valid():
+				comment = form.save(commit = False)
+				comment.user = request.user
+				comment.post = post
+				comment.save()
+				messages.success(request, 'You have made a comment successfully')
+				return redirect('home')
+		else:
+			form = CommentForm()
+		return render(request, 'hood/singlepost.html', {'post':post, 'form':form, 'comments':comments})
+	else:
+		messages.error(request, 'Join a neighbourhood to view post')
+		return redirect('home')

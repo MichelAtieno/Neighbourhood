@@ -15,15 +15,44 @@
 				<h4>Hood: <strong>{{hood.hood_location}}</strong> Hood Population : <strong>{{hood.hood_count}}</strong></h4>
 				<h4>{{hood.user_bio}}</h4>
 				<a class="btn btn-danger" href="{% url 'exitHood' hood.id%}">Exit Neighbourhood</a>
-				
+				<a class="btn btn-success" href="{% url 'hoodPost' %}">Create Post</a>
 					
 			</div>
 			<div class="col-md-1"></div>
 		
 	</div>
-	<div class="row">
-		
-	</div>
+	{%if posts%}
+				    	
+			<div class="row">
+				{% for post in posts %}
+				
+					<div class="panel panel-default">
+						<div class="panel-body">
+						<div class="col-md-2">
+							{{post.user.first_name}} {{post.user.last_name}}
+						</div>
+						<div class="col-md-7">
+							<p>
+								<strong><a href="{% url 'singlePost' post.id %}">{{post.title}} :</a></strong>
+							    {{post.body}}
+						 </p>
+						</div>
+						<div class="col-md-3">
+								
+						</div>
+						
+						</div>
+					</div>
+
+
+				{% endfor %}
+				
+			</div>
+
+			{% else %}
+			<h4 class="text-center">No Post has been created for this hood yet. Be the first to create on <a href="{% url 'createPost' %}">here</a></h4>
+			{% endif %}
+	
 
 
 {%endblock%}
