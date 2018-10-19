@@ -39,12 +39,12 @@ def hood(request):
 
 	else:
 		form = HoodForm()
-		return render(request,'my_hood.html',{"form":form})
+		return render(request,'hood/new_hood.html',{"form":form})
 
 def GetHood(request):
-    hoods = Neighbourhood.objects.filter(user = request.user)
-    return render(request, 'hood/hood.html', {'hoods':hoods})
-
+	
+	hoods = Neighbourhood.objects.filter(user = request.user)
+	return render(request,'hood/hood.html',{"hoods":hoods})
     
 
 @login_required(login_url='/accounts/login')

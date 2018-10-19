@@ -7,6 +7,7 @@ urlpatterns=[
     url(r'^$', views.home, name='home'),
     url(r'^createHood/$', views.hood, name='createHood'),
     url(r'^myHoods/$',views.GetHood,name = 'myHood'),
+    url(r'^profile/$', views.profile, name='profile'),
 ]
 
 if settings.DEBUG:

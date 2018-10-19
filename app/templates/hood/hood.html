@@ -3,10 +3,14 @@
 <div class="row container" style="padding-bottom:20px">
 		
 			<div class="col-md-3" style="padding-top: 24px">
+                {% if user.join %}
+                    {% include 'sidebars/hoodbar.html'%}
+                {% endif %}
 				
 			</div>
 			<div class="col-md-9">
-				<h3 >View all your Neighbourhoods you created!</h3>
+                <h3 >View all your Neighbourhoods you created!</h3>
+                    {% include 'sidebars/allhoodsbar.html'%}
 				<div class="row">
 					{% if hoods %}
 				
@@ -20,8 +24,7 @@
 							<div class="panel-body">
 								<p>{{hood.hood_description}}</p>
 								
-								<!-- <a href="{% url 'editHood' hood.id %}" class="btn btn-sm btn-primary">Edit</a> -->
-								<!-- <a href="{% url 'deleteHood' hood.id %}" class="btn btn-sm btn-danger">Delete</a> -->
+								
 							</div>
 							
 							
