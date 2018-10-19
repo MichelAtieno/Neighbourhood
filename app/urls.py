@@ -13,8 +13,10 @@ urlpatterns=[
     url(r'^search/$',views.search, name= 'search'),
     url(r'^hoodPost/$',views.hoodPost, name = 'hoodPost'),
     url(r'^singlePost/(\d+)',views.singlePost, name = 'singlePost'),
+    url(r'^allPosts/$',views.allPosts,name = 'allPosts'),
     url(r'^business/$',views.getBusiness, name= 'business'),
     url(r'^createBusiness/$',views.business, name= 'createBusiness'),
+    url(r'^searchBusiness/$',views.search_business,name = 'searchBusiness'),
 ]
 
 if settings.DEBUG:

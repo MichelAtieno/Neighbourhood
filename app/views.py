@@ -86,6 +86,7 @@ def search(request):
         message = 'You have not searched for any neighbourhood'
         return render(request, 'search.html', {'message':message})
 
+
 @login_required(login_url='/accounts/login')
 def hoodPost(request):
 	if Join.objects.filter(user_id=request.user).exists():
@@ -126,6 +127,11 @@ def singlePost(request, postId):
 		return redirect('home')
 
 @login_required(login_url='/accounts/login')
+def allPosts(request):
+	allPosts = Posts.objects.filter(user = request.user)
+	return render(request, 'hood/posts.html', {'allPosts':allPosts})
+
+@login_required(login_url='/accounts/login')
 def getBusiness(request):
 	business = Business.objects.filter(user =request.user)
 	return  render(request, 'hood/business.html', {'business':business})
@@ -148,5 +154,22 @@ def business(request):
 	else:
 		messages.error(request, 'Join a neighbourhood to view business')
 		return redirect('home')
+
+def search_business(request):
+	if request.GET['searchBusiness']:
+		search_term = request.GET.get('searchBusiness')
+		hood = Neighbourhood.objects.get(pk = request.user.join.hood_id.id)
+		posts =Posts.objects.filter(hood = request.user.join.hood_id.id)
+		business = Business.objects.filter(biz_name__icontains = search_term, hood = request.user.join.hood_id.id)
+		message = f"{search_term}"
+		return render(request, 'hood/bizsearch.html', {'message':message, 'hood':hood, 'business':business, 'posts':posts})
+	else: 
+		message = "Business not found"
+		hood = Neighbourhood.objects.get(pk = request.user.join.hood_id.id)
+		posts =Posts.objects.filter(hood = request.user.join.hood_id.id)
+		return render(request, 'hood/bizsearch.html', {'message':message,'hood':hood, 'posts':posts})
+
+
+
 
 

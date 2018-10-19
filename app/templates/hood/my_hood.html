@@ -55,6 +55,12 @@
 			{% endif %}
 
 			<h1 class="text-center">BUSINESS</h1>
+			<form class="" class="" action="{% url 'searchBusiness' %}">
+				<div class="form-group">
+				  <input type="text" class="form-control" placeholder="Search Business" name = "searchBusiness">
+				</div>
+				
+			</form>
 			<div class="row">
 				{% if business %}
 					 {% for biz in business %}
