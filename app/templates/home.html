@@ -4,7 +4,22 @@
 
 
  
-<div class="container">
+<div class="container-fluid">
+	<div class="jumbotron">
+		{% if user.join %}
+		<a href="{%url 'profile' %}">Profile</a>
+		<a href="{% url 'createBusiness' %}">Create Business</a>
+		<a href="{% url 'business' %}">My Businesses</a>
+		<a href="{% url 'allPosts' %}">My Posts</a>
+		<a href="{% url 'hoodPost' %}">Create Post</a>
+		<a href="">My Hood</a>
+		<a href="">My Neighbourhoods</a>
+		<a href="">Create Neighbourhoods</a>
+		<a href="">Change neighbourhoods</a>
+		{% endif %}
+	</div>
+		
+
 	<h4>Welcome to Neighbourhood, create one <a href="{% url 'createHood' %}">here</a></h4>
 	
 	  <form  class="" action="">

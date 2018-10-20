@@ -1,87 +1,103 @@
 {%extends 'base.html'%}
 {%load bootstrap3 %}
 {% block content%}
-	<div class="row container" style="padding-bottom:20px;">
-		
-			<div class="col-md-3" style="padding-top: 24px">
-				{%if user.join%}
-                {% include 'sidebars/hoodbar.html'%}
-				{%endif%}
-
-			</div>
-			<div class="col-md-8">
-                    {% include 'sidebars/allhoodsbar.html'%}
-				<h2><strong>{{hood.hood_name}}</strong></h2>
-				<h4>Hood: <strong>{{hood.hood_location}}</strong> Hood Population : <strong>{{hood.hood_count}}</strong></h4>
-				<h4>{{hood.user_bio}}</h4>
-				<a class="btn btn-danger" href="{% url 'exitHood' hood.id%}">Exit Neighbourhood</a>
-				<a class="btn btn-success" href="{% url 'hoodPost' %}">Create Post</a>
+	<div class="container-fluid">
+			<div class="jumbotron text-center" style="font-size:20px;">
+					{% if user.join %}
+					<a href="{%url 'profile' %}" style="margin-right:10px;">Profile |</a>
+					<a href="{% url 'createBusiness' %}" style="margin-right:10px;">Create Business |</a>
+					<a href="{% url 'business' %}" style="margin-right:10px;">My Businesses |</a>
+					<a href="{% url 'allPosts' %}" style="margin-right:10px;">My Posts |</a>
+					<a href="{% url 'hoodPost' %}" style="margin-right:10px;">Create Post |</a>
+					<a href="" style="margin-right:10px;">My Hood |</a>
+					<a href="" style="margin-right:10px;">Create Neighbourhoods |</a>
 					
+					{% endif %}
 			</div>
-			<div class="col-md-1"></div>
+			<div class="row container" style="padding-bottom:20px;">
 		
-	</div>
-	<h1 class="text-center">POSTS</h1>
-	{%if posts%}
-				    	
-			<div class="row">
-				{% for post in posts %}
+					<div class="col-md-2"></div>
+					<div class="col-md-8"  style="font-size:18px;">		
+						<h2 style="font-weight: bolder;">{{hood.hood_name}}</h2>
+						<p><span style="font-weight:bolder">Hood :</span> {{hood.hood_location}}</p>
+						<p><span style="font-weight:bolder">Hood Population :</span> {{hood.hood_count}} </p>
+						<h4>{{hood.user_bio}}</h4>
+						<a class="btn btn-success" href="{% url 'hoodPost' %}">Create Post</a>
+						<a class="btn btn-danger" href="{% url 'exitHood' hood.id%}">Exit Neighbourhood</a>
+						
+							
+					</div>
+					<div class="col-md-2"></div>
 				
+			</div>
+			{%if posts%}		    	
+			<div class="row">
+				<div class="col-md-6">
+					{% for post in posts %}
+					<h1 class="text-center">POSTS</h1>
 					<div class="panel panel-default">
 						<div class="panel-body">
-						<div class="col-md-2">
-							{{post.user.first_name}} {{post.user.last_name}}
-						</div>
-						<div class="col-md-7">
-							<p>
-								<strong><a href="{% url 'singlePost' post.id %}">{{post.title}} :</a></strong>
-							    {{post.body}}
-						 </p>
-						</div>
-						<div class="col-md-3">
-								
-						</div>
+							<div class="row">
+								<div class="col-md-3">
+									<p><span style="font-weight:bolder;">Posted by :</span> {{post.user}}</p>
+								</div>
+								<div class="col-md-7">
+									<div class="row">
+										<div class="col-md-4">
+											<p>
+											<span  style="font-weight:bolder;">Title :</span><a href="{% url 'singlePost' post.id %}">{{post.title}} </a>
+											</p>
+										</div>
+										<div class="col-md-8">
+											{{post.body}}	
+										</div>
+
+									</div>
+								</div>
+								<div class="col-md-2"></div>
+
+							</div>
 						
 						</div>
 					</div>
+					{% endfor %}
+					{% else %}
+					<h4 class="text-center">No Post has been created for this hood yet. Be the first to create on <a href="{% url 'hoodPost' %}">here</a></h4>
+					{% endif %}
 
-
-				{% endfor %}
-				
-			</div>
-
-			{% else %}
-			<h4 class="text-center">No Post has been created for this hood yet. Be the first to create on <a href="{% url 'createPost' %}">here</a></h4>
-			{% endif %}
-
-			<h1 class="text-center">BUSINESS</h1>
-			<div class="row">
-				{% if business %}
-					 {% for biz in business %}
-
-						<div class="col-md-6">
-							<div class="panel panel-default">
-								
-								<div class="panel-heading">
-									{{biz.biz_name}}
-								</div>
-								<div class="panel-body">
-									<p>{{biz.biz_description}}</p>
-									
-									
-								</div>
-								
-								
-
-							</div>
+				</div>
+				<div class="col-md-6">
+					{% if business %}
+					{% for biz in business %}
+					<h1 class="text-center">BUSINESSES</h1>
+					<div class="panel panel-default">
+						
+						<div class="panel-heading">
+							{{biz.biz_name}}
+						</div>
+						<div class="panel-body">
+							<p>{{biz.biz_description}}</p>
+							
+							
 						</div>
 
+					</div>
 					{%endfor%}
-				{% else %}
-					<h4 class="text-center">No Business has been created for this hood yet. Be the first to create on <a href="{% url 'createBusiness' %}">here</a></h4>
-				{% endif %}
-			</div>
+				    {% else %}
+					   <h4 class="text-center">No Business has been created for this hood yet. Be the first to create on <a href="{% url 'createBusiness' %}">here</a></h4>
+				    {% endif %}
+				</div>
+
+					
+				</div>
+			
+
+	</div>
 	
+			
+				
+				
+			
 
 
 {%endblock%}
