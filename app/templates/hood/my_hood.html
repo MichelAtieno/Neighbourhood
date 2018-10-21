@@ -10,7 +10,7 @@
 					<a href="{% url 'allPosts' %}" style="margin-right:10px;">My Posts |</a>
 					<a href="{% url 'hoodPost' %}" style="margin-right:10px;">Create Post |</a>
 					<a href="{% url 'createHood' %}" style="margin-right:10px;">Create Neighbourhoods |</a>
-					
+					<a href="{% url 'deleteHood' hood.id %}">Delete Hood</a>
 					{% endif %}
 			</div>
 			<div class="row container" style="padding-bottom:20px;">

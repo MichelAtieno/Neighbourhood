@@ -15,12 +15,11 @@
 		
 		<h1 class="text-center" style="color: lavender;">OUR HOODS</h1>
 		{%for hood in hoods%}
-		<div class="col-md-3" id="hoods">
+		<div class="col-md-4" id="hoods">
 					<h3><span style="font-weight: bolder">Location:</span> {{hood.hood_location}}</h3>
                     <p><span style="font-weight: bolder">Name:</span> {{hood.hood_name}}</p>
                     <p><span style="font-weight: bolder">Description:</span> {{hood.hood_description}}</p>
 					<a href="{% url 'joinHood' hood.id %}" class="btn btn-sm btn-primary text-center" style="font-size:18px;">Join Hood</a>
-					<a href="{% url 'deleteHood' hood.id %}" class="btn btn-danger" style="font-size:18px;">Delete Hood</a>
 		</div>
 		{%endfor%}
 		
