@@ -20,6 +20,7 @@
                     <p><span style="font-weight: bolder">Name:</span> {{hood.hood_name}}</p>
                     <p><span style="font-weight: bolder">Description:</span> {{hood.hood_description}}</p>
 					<a href="{% url 'joinHood' hood.id %}" class="btn btn-sm btn-primary text-center" style="font-size:18px;">Join Hood</a>
+					<a href="{% url 'deleteHood' hood.id %}" class="btn btn-danger" style="font-size:18px;">Delete Hood</a>
 		</div>
 		{%endfor%}
 		

@@ -202,7 +202,7 @@ def deleteBusiness(request,businessId):
 @login_required(login_url='/accounts/login')
 def deleteHood(request, hoodId):
 	Neighbourhood.objects.filter(pk = hoodId).delete()
-	return redirect(request, 'hood/my_hood.html')
+	return render(request, 'home.html')
 
 
 
