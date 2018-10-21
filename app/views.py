@@ -177,6 +177,10 @@ def editProfile(request):
 		form = ProfileForm(instance=profile)
 		return render(request, 'editprofile.html', {'form':form})
 
+@login_required(login_url='/accounts/login')
+def deletePost(request, postId):
+	Posts.objects.filter(pk = postId).delete()
+	return render(request,'home.html')
 
 
 

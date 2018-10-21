@@ -38,6 +38,8 @@
 									<p><span style="font-weight:bolder; font-size:18px">{{comment.user}} :</span> {{comment.comment}}</p>
 								</div>
 								{%endfor%}
+								<br>
+								<a href="{% url 'deletePost' post.id %}" class="btn btn-danger" style="font-size:18px;">Delete Post</a>
 							</div>
 						</div>
 					
