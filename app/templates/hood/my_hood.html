@@ -2,7 +2,7 @@
 {%load bootstrap3 %}
 {% block content%}
 	<div class="container-fluid">
-			<div class="jumbotron text-center" style="font-size:20px;">
+			<div class="jumbotron text-center" style="font-size:20px; background-color:ghostwhite;height:50px;padding:0px;color:black">
 					{% if user.join %}
 					<a href="{%url 'profile' %}" style="margin-right:10px;">Profile |</a>
 					<a href="{% url 'createBusiness' %}" style="margin-right:10px;">Create Business |</a>
@@ -16,72 +16,60 @@
 			</div>
 			<div class="row container" style="padding-bottom:20px;">
 		
-					<div class="col-md-2"></div>
-					<div class="col-md-8"  style="font-size:18px;">		
-						<h2 style="font-weight: bolder;">{{hood.hood_name}}</h2>
-						<p><span style="font-weight:bolder">Hood :</span> {{hood.hood_location}}</p>
-						<p><span style="font-weight:bolder">Hood Population :</span> {{hood.hood_count}} </p>
+					<div class="col-md-4"></div>
+					<div class="col-md-8"  style="font-size:20px; color:lavender">		
+						<h2 style="font-weight: bolder;" >{{hood.hood_name}}</h2>
+						<p><span style="font-weight:bolder;">Hood :</span> {{hood.hood_location}}</p>
+						<p><span style="font-weight:bolder;">Hood Population :</span> {{hood.hood_count}} </p>
 						<h4>{{hood.user_bio}}</h4>
-						<a class="btn btn-success" href="{% url 'hoodPost' %}">Create Post</a>
-						<a class="btn btn-danger" href="{% url 'exitHood' hood.id%}">Exit Neighbourhood</a>
+						<a class="btn btn-success" href="{% url 'hoodPost' %}" style="font-size:18px;">Create Post</a>
+						<a class="btn btn-danger" href="{% url 'exitHood' hood.id%}" style="font-size:18px;">Exit Neighbourhood</a>
 						
 							
 					</div>
-					<div class="col-md-2"></div>
+					
 				
 			</div>
 			{%if posts%}		    	
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6" style="color:lavender">
 					{% for post in posts %}
-					<h1 class="text-center">POSTS</h1>
-					<div class="panel panel-default">
-						<div class="panel-body">
+					<h1 class="text-center" >POSTS</h1>
+					
 							<div class="row">
-								<div class="col-md-3">
-									<p><span style="font-weight:bolder;">Posted by :</span> {{post.user}}</p>
-								</div>
-								<div class="col-md-7">
-									<div class="row">
-										<div class="col-md-4">
-											<p>
-											<span  style="font-weight:bolder;">Title :</span><a href="{% url 'singlePost' post.id %}">{{post.title}} </a>
-											</p>
-										</div>
-										<div class="col-md-8">
-											{{post.body}}	
-										</div>
-
-									</div>
-								</div>
 								<div class="col-md-2"></div>
-
+								<div class="col-md-8" id="posts">
+									<p>
+									<span  style="font-weight:bolder;">Title :</span><a href="{% url 'singlePost' post.id %}">{{post.title}} </a>
+									</p>
+									<p>{{post.body}}</p>	
+									<p><span style="font-weight:bolder;">Posted by :</span> {{post.user}}</p>
+								</div>	
+								<div class="col-md-2"></div>
 							</div>
 						
-						</div>
-					</div>
+						
 					{% endfor %}
 					{% else %}
 					<h4 class="text-center">No Post has been created for this hood yet. Be the first to create on <a href="{% url 'hoodPost' %}">here</a></h4>
 					{% endif %}
 
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6" style="color:lavender">
 					{% if business %}
 					{% for biz in business %}
 					<h1 class="text-center">BUSINESSES</h1>
-					<div class="panel panel-default">
+						<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8" id="business">
+								<p><span style="font-weight:bolder;">Name: </span><a >{{biz.biz_name}}</a></p>
+								<p><span style="font-weight:bolder;">Description: </span> {{biz.biz_description}}</p>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+							
 						
-						<div class="panel-heading">
-							{{biz.biz_name}}
-						</div>
-						<div class="panel-body">
-							<p>{{biz.biz_description}}</p>
 							
-							
-						</div>
-
-					</div>
 					{%endfor%}
 				    {% else %}
 					   <h4 class="text-center">No Business has been created for this hood yet. Be the first to create on <a href="{% url 'createBusiness' %}">here</a></h4>

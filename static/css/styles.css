@@ -13,3 +13,25 @@
 body {
     font-family: 'Segoe UI';
 }
+
+#posts {
+    box-sizing:border-box;
+    border:solid black;
+    border-radius: 10%;
+    font-size:18px;
+    margin-top: 5px;
+    background-color: gainsboro;
+    color:black;
+    padding-top: 5px;
+}
+
+#business{
+    box-sizing: border-box;
+    border:solid black;
+    border-radius: 10%;
+    font-size:18px;
+    margin-top: 5px;
+    background-color: gainsboro;
+    color:black;
+    padding-top: 5px;
+}

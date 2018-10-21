@@ -2,7 +2,7 @@
 {%load bootstrap3%}
 {%block content%}
 <div class="container-fluid">
-		<div class="jumbotron text-center" style="font-size:20px;">
+		<div class="jumbotron text-center" style="font-size:20px; background-color:ghostwhite;height:50px;padding:0px;color:black">
 				{% if user.join %}
 				<a href="{%url 'profile' %}" style="margin-right:10px;">Profile |</a>
 				<a href="{% url 'createBusiness' %}" style="margin-right:10px;">Create Business |</a>
