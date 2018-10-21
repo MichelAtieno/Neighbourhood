@@ -7,18 +7,19 @@
 	<div class="row">
 			<h3 class="text-center" >View all My Businesses</h3>
 		
-			<div class="col-md-2"></div>	
+			<div class="col-md-3"></div>	
 				{% if business %}
 				{%for biz in business%}
-					<div class="col-md-8" id="business">
+					<div class="col-md-6" id="business" style="padding-bottom: 10px;">
 						<p><span style="font-weight:bolder;">Name: </span><a >{{biz.biz_name}}</a></p>
 						<p><span style="font-weight:bolder;">Description: </span> {{biz.biz_description}}</p>
+						<a href="{% url 'deleteBusiness' biz.id %}" class="btn btn-danger">Delete Business</a>
 					</div>
 				{%endfor%}
 				{%else%}
 				<h4>You havent registered any businesses yet. You can register on <a href="{% url 'createBusiness' %}">here</a> </h4>
 				{%endif%}			
-			<div class="col-md-2"></div>
+			<div class="col-md-3"></div>
 			
 		
 	</div>

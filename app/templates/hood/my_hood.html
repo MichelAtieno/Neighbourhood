@@ -61,10 +61,10 @@
 					<h1 class="text-center">BUSINESSES</h1>
 						<div class="row">
 							<div class="col-md-2"></div>
-							<div class="col-md-8" id="business">
-								<p><span style="font-weight:bolder;">Name: </span><a >{{biz.biz_name}}</a></p>
+							<div class="col-md-8" id="business" style="padding-bottom:10px;">
+								<p><span style="font-weight:bolder;">Name: </span><a href="{% url 'business' %}">{{biz.biz_name}}</a></p>
 								<p><span style="font-weight:bolder;">Description: </span> {{biz.biz_description}}</p>
-								<a href="{% url 'editBusiness' biz.id %}" class="btn btn-sm btn-primary">Edit</a>
+								<a href="{% url 'editBusiness' biz.id %}" class="btn btn-primary" style="font-size:18px;">Edit</a>
 							</div>
 							
 							<div class="col-md-2"></div>
