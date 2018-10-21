@@ -56,16 +56,16 @@ class Business(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_bio = models.TextField(max_length=200)
+    user_bio = models.TextField(max_length=200,default = "Awesome bio will appear here")
 
     def __str__(self):
         return self.user
 
-# @receiver(post_save, sender=User)
-# def update_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         UserProfile.objects.create(user=instance)
-#     instance.profile.save()
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+post_save.connect(create_user_profile, sender=User)
 
 class Join(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
