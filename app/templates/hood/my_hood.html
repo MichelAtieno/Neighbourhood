@@ -64,7 +64,9 @@
 							<div class="col-md-8" id="business">
 								<p><span style="font-weight:bolder;">Name: </span><a >{{biz.biz_name}}</a></p>
 								<p><span style="font-weight:bolder;">Description: </span> {{biz.biz_description}}</p>
+								<a href="{% url 'editBusiness' biz.id %}" class="btn btn-sm btn-primary">Edit</a>
 							</div>
+							
 							<div class="col-md-2"></div>
 						</div>
 							

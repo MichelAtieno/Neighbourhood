@@ -178,9 +178,30 @@ def editProfile(request):
 		return render(request, 'editprofile.html', {'form':form})
 
 @login_required(login_url='/accounts/login')
+def editBusiness(request,businessId):
+	business = Business.objects.get(pk = businessId)
+	if request.method == 'POST':
+		form = BusinessForm(request.POST, instance = business)
+		if form.is_valid():
+			form.save()
+			return redirect('business')
+	else:
+		form = BusinessForm(instance = business)
+	return render(request, 'hood/editbiz.html', {'form':form, 'business':business})
+
+@login_required(login_url='/accounts/login')
 def deletePost(request, postId):
 	Posts.objects.filter(pk = postId).delete()
 	return render(request,'home.html')
+
+@login_required(login_url='/accounts/login')
+def deleteBusiness(request,businessId):
+	Business.objects.filter(pk= businessId).delete()
+	return render(request,'home.html')
+
+
+
+
 
 
 

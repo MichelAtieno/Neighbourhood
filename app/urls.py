@@ -18,8 +18,9 @@ urlpatterns=[
     url(r'^createBusiness/$',views.business, name= 'createBusiness'),
     url(r'^searchBusiness/$',views.search_business,name = 'searchBusiness'),
     url(r'^editProfile/$',views.editProfile,name= 'editProfile'),
+    url(r'^editBusiness/(\d+)',views.editBusiness,name = 'editBusiness'),
     url(r'^deletePost/(\d+)',views.deletePost,name = 'deletePost'),
-
+    url(r'^deleteBusiness/(\d+)',views.deleteBusiness,name = 'deleteBusiness'),
 ]
 
 if settings.DEBUG:
