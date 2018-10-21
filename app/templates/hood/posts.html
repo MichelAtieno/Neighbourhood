@@ -1,7 +1,18 @@
 {%extends 'base.html'%}
 {%block content%}
+		{% if user.join %}
+		<div class="jumbotron text-center" style="font-size:20px; background-color:ghostwhite;height:50px;padding:0px;color:black">	
+				<a href="{%url 'profile' %}" style="margin-right:10px;">Profile |</a>
+				<a href="{% url 'createBusiness' %}" style="margin-right:10px;">Create Business |</a>
+				<a href="{% url 'business' %}" style="margin-right:10px;">My Businesses |</a>
+				<a href="{% url 'allPosts' %}" style="margin-right:10px;">My Posts |</a>
+				<a href="{% url 'hoodPost' %}" style="margin-right:10px;">Create Post |</a>
+				<a href="{% url 'createHood' %}" style="margin-right:10px;">Create Neighbourhoods |</a>
+		</div>
+		{% endif %}
 
 <div class="row container" style="padding-bottom:20px">
+	
 		
 				
 					

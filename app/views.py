@@ -51,7 +51,7 @@ def GetHood(request):
 def profile(request):
     profile = UserProfile.objects.get(user=request.user)
 
-    return render(request, 'profile/profile.html', { 'profile':profile })
+    return render(request, 'profile.html', { 'profile':profile })
 
 @login_required(login_url='/accounts/login/')
 def joinHood(request,hoodId):
