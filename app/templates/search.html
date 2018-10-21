@@ -1,34 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="col-md-1"></div>
-<div class="col-md-10">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h3>Search results for the search term: <strong>{{message}}</strong></h3></div>
-      </div>
+    <div class="container-fluid">
+        
+    </div>
+      <h3 class="text-center">Search results for the search term: <strong>{{message}}</strong></h3>
+      
       {%if hoods%}
      <div class="row">
+        <div class="col-md-2"></div>
           {% for hood in hoods %}
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    
-                    <div class="panel-heading">
-                        {{hood.hood_location}}
-                    </div>
-                    <div class="panel-body">
-                        <p>{{hood.hood_name}}</p>
-                        <p>{{hood.hood_description}}</p>
-                        
-                        {%if user.join.hood_id.id == hood.id%}
-                        <a href="{% url 'exitHood' hood.id %}" class="btn btn-sm btn-danger">Exit</a>
-                        {%else%}
-                        <a href="{% url 'joinHood' hood.id %}" class="btn btn-sm btn-success">Join</a>
-                        {%endif%}
-                    </div>				
-
-                </div>
-            </div>
-    
-    {%endfor%}
+            <div class="col-md-5" id="hoods">
+                <h3><span style="font-weight: bolder">Location:</span> {{hood.hood_location}}</h3>
+                <p><span style="font-weight: bolder">Name:</span> {{hood.hood_name}}</p>
+                <p><span style="font-weight: bolder">Description:</span> {{hood.hood_description}}</p>
+                {%if user.join.hood_id.id == hood.id%}
+                <a href="{% url 'exitHood' hood.id %}" class="btn btn-sm btn-danger" style="font-size:18px;">Exit</a>
+                {%else%}
+                <a href="{% url 'joinHood' hood.id %}" class="btn btn-sm btn-primary" style="font-size:18px;">Join</a>
+                {%endif%}
+            </div>    
+            {%endfor%}
+        <div class="col-md-2"></div>
     </div>
     {%else%}
     <div class="panel-body">
