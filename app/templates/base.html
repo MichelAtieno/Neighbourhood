@@ -14,10 +14,11 @@
   {% block styles %}
     {% bootstrap_css %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    {% endblock %}
 
 </head>
-<body>
+<body style="background-image: url('static/back3.jpg'); background-size: cover;">
     {% include "navbar.html" %}
     {% block content %}  {%endblock%}
 

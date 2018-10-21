@@ -1,0 +1,15 @@
+#hoods {
+    box-sizing:border-box;
+    border:solid black;
+    margin-left: 3px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10%;
+    background-color: gainsboro;
+    color:black;
+    font-size:18px;
+}
+
+body {
+    font-family: 'Segoe UI';
+}

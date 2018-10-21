@@ -1,15 +1,22 @@
 {%extends 'base.html'%}
 {% block content%}
+		{% if user.join %}
+		<div class="jumbotron text-center" style="font-size:20px;">
+			<a href="{%url 'profile' %}" style="margin-right:10px;">Profile |</a>
+			<a href="{% url 'createBusiness' %}" style="margin-right:10px;">Create Business |</a>
+			<a href="{% url 'business' %}" style="margin-right:10px;">My Businesses |</a>
+			<a href="{% url 'allPosts' %}" style="margin-right:10px;">My Posts |</a>
+			<a href="{% url 'hoodPost' %}" style="margin-right:10px;">Create Post |</a>
+			<a href="" style="margin-right:10px;">My Hood |</a>
+			<a href="" style="margin-right:10px;">Create Neighbourhoods |</a>
+		</div>
+		{% endif %}
 	<div class="row container" style="padding-bottom:20px">
 		
-			<div class="col-md-3" style="padding-top: 24px">
-				{%if user.join%}
-					{% include 'sidebars/hoodbar.html' %}
-				{%endif%}
 
-			</div>
+		    <div class="col-md-3"></div>
 			<div class="col-md-7">
-				{% include 'sidebars/allhoodsbar.html' %}
+				
 				<h2><strong>{{profile.user}}</strong></h2>
 			
 				<h4><strong></strong> HOOD: <strong>{{user.join.hood_id.hood_location}}</strong> Neighbourhood: <strong>{{user.join.hood_id.hood_name}}</strong></h4>
