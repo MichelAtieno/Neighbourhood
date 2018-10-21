@@ -7,21 +7,24 @@
     <li>Sign in to the application to start using.</li>
     <li>Set up a profile, a general location and a neighborhood name.</li>
     <li>Find a list of different businesses in my neighborhood.</li>
-    <li>Comment on a photo and be identified as the user who posted the comment.</li>
-    <li>View photos based on the user who published the photo..</li>
+    <li>Create Posts that will be visible to everyone in my neighborhood</li>
+    <li>Change My neighborhood when I decide to move out.</li>
+    <li>Only view details of a single neighborhood.</li>
 <ul>
 
 ### Behaviors
 
 <ol>
-    <li>The project has an admin dashboard, where I as the administrator manages existing profiles.</li>
-    <li>The User can upload pictures to their profiles using the link on their profile page, "Add Image".</li>
-    <li>The User can update their profiles using the link on their profile page, "Edit Profile".</li>
-    <li>The User can search for existing profiles using the search bar on the navbar, "Search".</li>
-     <li>The User can comment on a specific photo by clicking the comment icon and they will be redirected to a page where they can post comments to an image.</li>
+    <li>The project has an admin dashboard, where I as the administrator manages all models.</li>
+    <li>The User can join a neighbourhood by clicking the button "Join" on the homepage</li>
+    <li>Once a user signs in, their profile is created automatically, and they can navigate to their profile by clicking on their profile name link on the navbar.</li>
+    <li>The User can search for hoods they are interested in by typing the name of the hood location on the 'hood search bar' on the navbar. Once they join a hood,they can also search for a business in the respective neighbourhood by typing the name of the business in the 'hood business bar' on the navbar</li>
+    <li>The User can create a Post in the neighbourhood and edit their post.</li>
+    <li>The User can create a Business in the neighbourhood and edit their business.</li>
+    <li>The User Profile is updated once the user joins a neighbourhood.</li>
 </ol>
 
-# You can view project on https://instuglam.herokuapp.com/
+# You can view project on https://hoods101.herokuapp.com/
 
 
 ## Set-up and Installation
@@ -43,8 +46,8 @@
 None so far.
 
 ## Technologies used
-    - Python 3.6 (Django Framework)
-    - Bootstrap 3 and 4
+    - Python 3.6.6 (Django Framework)
+    - Bootstrap 3
     - Heroku
     - Postgresql
 
