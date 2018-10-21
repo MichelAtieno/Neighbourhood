@@ -21,6 +21,7 @@ urlpatterns=[
     url(r'^editBusiness/(\d+)',views.editBusiness,name = 'editBusiness'),
     url(r'^deletePost/(\d+)',views.deletePost,name = 'deletePost'),
     url(r'^deleteBusiness/(\d+)',views.deleteBusiness,name = 'deleteBusiness'),
+    url(r'^deleteHood/(\d+)',views.deleteHood,name = 'deleteHood'),
 ]
 
 if settings.DEBUG:

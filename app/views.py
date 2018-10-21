@@ -192,12 +192,20 @@ def editBusiness(request,businessId):
 @login_required(login_url='/accounts/login')
 def deletePost(request, postId):
 	Posts.objects.filter(pk = postId).delete()
-	return render(request,'home.html')
+	return render(request,'hood/my_hood.html')
 
 @login_required(login_url='/accounts/login')
 def deleteBusiness(request,businessId):
 	Business.objects.filter(pk= businessId).delete()
-	return render(request,'home.html')
+	return render(request,'hood/my_hood.html')
+
+@login_required(login_url='/accounts/login')
+def deleteHood(request, hoodId):
+	Neighbourhood.objects.filter(pk = hoodId).delete()
+	return redirect(request, 'hood/my_hood.html')
+
+
+
 
 
 
