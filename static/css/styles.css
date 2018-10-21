@@ -17,12 +17,13 @@ body {
 #posts {
     box-sizing:border-box;
     border:solid black;
-    border-radius: 10%;
+    border-radius: 5%;
     font-size:18px;
     margin-top: 5px;
     background-color: gainsboro;
     color:black;
     padding-top: 5px;
+    padding-bottom: 10px;
 }
 
 #business{
@@ -34,4 +35,16 @@ body {
     background-color: gainsboro;
     color:black;
     padding-top: 5px;
+}
+
+#singlepost {
+    box-sizing:border-box;
+    border:solid black;
+    border-radius: 5%;
+    font-size:18px;
+    margin-top: 5px;
+    background-color: gainsboro;
+    color:black;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }

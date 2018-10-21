@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {%load bootstrap3%}
 {%block content%}
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: rgb(30, 60, 97);">
 		{% if user.join %}
 		<div class="jumbotron text-center" style="font-size:20px; background-color:ghostwhite;height:50px;padding:0px;color:black">	
 				<a href="{%url 'profile' %}" style="margin-right:10px;">Profile |</a>
@@ -13,9 +13,9 @@
 		</div>
 		{% endif %}
 		
-		<div class="row container" style="padding-bottom:20px">
+		<div class="row" style="padding-bottom:20px">
 				<div class="col-md-3"></div>
-					<div class="col-md-7">
+					<div class="col-md-7" style="font-size:20px;">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="">Title: {{post.title}}</h3>
@@ -25,20 +25,17 @@
 								
 							</div>
 						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								Comments
-							</div>
+						<div class="panel panel-default" >
 							<div class="panel-body">
 								<form action = "{% url 'singlePost' post.id %}" method = "post">
 									{%csrf_token%}
 									{% bootstrap_form form %}
-									<button type="submit" class="btn btn-primary btn-sm">Comment</button>
+									<button type="submit" class="btn btn-primary" style="font-size:18px;">Comment</button>
 									
 								</form>
 								{% for comment in comments %}
-								<div class="row container">
-									<strong>{{comment.user}}</strong>: {{comment.comment}}
+								<div class="row" style="margin-top:10px;">
+									<p><span style="font-weight:bolder; font-size:18px">{{comment.user}} :</span> {{comment.comment}}</p>
 								</div>
 								{%endfor%}
 							</div>

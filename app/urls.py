@@ -17,6 +17,7 @@ urlpatterns=[
     url(r'^business/$',views.getBusiness, name= 'business'),
     url(r'^createBusiness/$',views.business, name= 'createBusiness'),
     url(r'^searchBusiness/$',views.search_business,name = 'searchBusiness'),
+     url(r'^editProfile/$',views.editProfile,name= 'editProfile'),
 ]
 
 if settings.DEBUG:

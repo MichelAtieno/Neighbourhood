@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import HoodForm, HoodPostForm, CommentForm, BusinessForm
+from .forms import HoodForm, HoodPostForm, CommentForm, BusinessForm, ProfileForm
 from .models import Neighbourhood, Business, UserProfile, Join, Posts, Comment 
 
 
@@ -169,7 +169,16 @@ def search_business(request):
 		posts =Posts.objects.filter(hood = request.user.join.hood_id.id)
 		return render(request, 'hood/bizsearch.html', {'message':message,'hood':hood, 'posts':posts})
 
-
-
+@login_required(login_url='/accounts/login')
+def editProfile(request):
+	profile=UserProfile.objects.get(user=request.user)
+	if request.method == 'POST':
+		form = ProfileForm(request.POST,instance = profile)
+		if form.is_valid():
+			form.save()
+			return redirect('profile')
+	else:
+		form = ProfileForm(instance=profile)
+		return render(request, 'editprofile.html', {'form':form})
 
 

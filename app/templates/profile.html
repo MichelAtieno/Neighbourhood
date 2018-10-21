@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: rgb(30, 60, 97);" >
 		
 		{% if user.join %}
 		<div class="jumbotron text-center" style="font-size:20px; background-color:ghostwhite;height:50px;padding:0px;color:black">
@@ -13,24 +15,25 @@
 			<a href="{% url 'createHood' %}" style="margin-right:10px;">Create Neighbourhoods |</a>
 		</div>
 		{% endif %}
-	<div class="row container" style="padding-bottom:20px">
+	<div class="row">
 		
 
 		    <div class="col-md-3"></div>
-			<div class="col-md-7">
+			<div class="col-md-7" style="font-size:23px; color:white;">
 				
-				<h2><strong>{{profile.user}}</strong></h2>
-			
-				<h4><strong></strong> HOOD: <strong>{{user.join.hood_id.hood_location}}</strong> Neighbourhood: <strong>{{user.join.hood_id.hood_name}}</strong></h4>
-				<h4>{{profile.user_bio}}</h4>
-					
+				<h2 style="font-size: 36px;font-weight:bolder;">USER: {{profile.user}}</h2>
+				<p><span style="font-weight:bolder;font-size:23px;">Hood Location:</span> {{user.join.hood_id.hood_location}} </p>
+				<p><span style="font-weight:bolder;font-size:23px;">Neighbourhood:</span>  {{user.join.hood_id.hood_name}}</p>
+				<h4><span style="font-weight:bolder;font-size:23px;">Bio:</span> {{profile.user_bio}}</h4>
+				<a class="btn btn-success" href="{% url 'editProfile' %}" style="font-size:18px;">Update Profile</a>
+							
 			</div>
 			<div class="col-md-2"></div>
 		
 	</div>
 
 </div>
-</body>
+
 
 
 {% endblock %}

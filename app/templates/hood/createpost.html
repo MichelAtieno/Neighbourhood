@@ -1,6 +1,9 @@
 {%extends 'base.html'%}
 {% load bootstrap3 %}
 {% block content %}
+<div class="container-fluid">
+
+
     <div class="row">
             <div class="col-md-3">
                 
@@ -16,7 +19,7 @@
                     
                             {%csrf_token%}
                             {% bootstrap_form form %}
-                            <button type="submit" class="btn btn-success btn-sm btn-block">Create Post</button>
+                            <button type="submit" class="btn btn-primary" style="font-size:18px;">Create Post</button>
                         </form>
                     </div>
                 </div>
@@ -24,5 +27,5 @@
             </div>
             <div class="col-md-2"></div>
     </div>
-   
+</div>
 {% endblock %}
